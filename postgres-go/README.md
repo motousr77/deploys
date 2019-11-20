@@ -27,3 +27,15 @@ do this:
 Remove --chown from the COPY line in the Dockerfile and use it under RUN flag
  -->
 kubectl get pods -n kube-system
+<!-- # -->
+kubectl apply -f deployment.yaml
+kubelet get pods
+kubectl apply -f service.yaml
+kubectl get services
+<!--  -->
+read -p "Enter the cluster IP address for hello-svc: " clusterip
+<!--  -->
+curl $clusterip:30000
+<!--  -->
+kubectl scale deployment _deployment_name_ --replicas=_replica_count
+<!-- end. -->
