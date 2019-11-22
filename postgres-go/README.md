@@ -39,3 +39,38 @@ curl $clusterip:30000
 <!--  -->
 kubectl scale deployment _deployment_name_ --replicas=_replica_count
 <!-- end. -->
+
+--- copy to here privat_key from vagrant directories:
+mkdir ~/machine-ssh/worker-1/private_key
+cat > ~/machine-ssh/worker-1/private_key << EOF
+EOF
+chomd 600 ~/machine-ssh/worker-1/private_key
+
+mkdir ~/machine-ssh/worker-2/private_key
+cat > ~/machine-ssh/worker-1/private_key << EOF
+EOF
+chmod 600 ~/machine-ssh/worker-2/private_key
+---
+scp -i '~/machine-ssh/worker-1/private_key':/home/vagrant/readme_copy /home/vagrant/readme
+
+You will need to save the Docker image as a tar file:
+
+docker save -o <path for generated tar file> <image name>
+Then copy your image to a new system with regular file transfer tools such as cp, scp or rsync(preferred for big files). After that you will have to load the image into Docker:
+
+docker load -i <path to image tar file>
+PS: You may need to sudo all commands.
+
+EDIT: You should add filename (not just directory) with -o, for example:
+
+docker save -o c:/myfile.tar centos:16
+
+---
+docker tag local-image:tagname new-repo:tagname
+docker push new-repo:tagname
+---
+docker tag hello:latest devcodemy/hellops:latest
+docker push hello:latest
+---
+<!-- docker login https://hub.docker.com/ -->
+docker login --username devcodemy --password DOCKER098pass
