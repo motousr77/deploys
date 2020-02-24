@@ -65,7 +65,8 @@ scp -i '~/machine-ssh/worker-1/private_key':/home/vagrant/readme_copy /home/vagr
 # You will need to save the Docker image as a tar file:
 
 docker save -o <path for generated tar file> <image name>
-# Then copy your image to a new system with regular file transfer tools such as cp, scp or rsync(preferred for big files). After that you will have to load the image into Docker:
+# Then copy your image to a new system with regular file transfer tools such as cp, scp or rsync(preferred for big files).
+# After that you will have to load the image into Docker:
 
 docker load -i <path to image tar file>
 # PS: You may need to sudo all commands.
